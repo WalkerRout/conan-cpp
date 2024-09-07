@@ -4,6 +4,7 @@ BIN=compressor
 WORKDIR=$(pwd)
 BUILD=build
 CONFIG=Release
+CPPSTD=23
 
 function usage() {
   echo "Usage: ./launch.sh <ARG>"
@@ -19,7 +20,7 @@ function build() {
   cd $WORKDIR
   
   echo "Building into $BUILD/..."
-  conan install . --output-folder=$BUILD --build=missing
+  conan install . -s compiler.cppstd=$CPPSTD --output-folder=$BUILD --build=missing
 
   echo "Entering $BUILD/..."
   cd $BUILD
